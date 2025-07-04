@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Información Personal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #userForm="ngForm" (ngSubmit)="guardarDatos()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input 
+          type="text" 
+          name="nombre" 
+          [(ngModel)]="datosUsuario.nombre" 
+          required>
+        </ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input 
+          type="text" 
+          name="apellido" 
+          [(ngModel)]="datosUsuario.apellido" 
+          required>
+        </ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input 
+          type="email" 
+          name="email" 
+          [(ngModel)]="datosUsuario.email" 
+          required 
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    
+    <ion-button 
+      type="submit" 
+      expand="block" 
+      [disabled]="!userForm.valid">
+      Guardar Datos
+    </ion-button>
+  </form>
+  
+  <!-- Sección para mostrar los datos guardados -->
+  <ion-card *ngIf="mostrarDatos">
+    <ion-card-header>
+      <ion-card-title>Datos Guardados</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Nombre: {{ datosUsuario.nombre }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Apellido: {{ datosUsuario.apellido }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Email: {{ datosUsuario.email }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
